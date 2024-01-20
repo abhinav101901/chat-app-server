@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
     {
@@ -14,13 +14,13 @@ const userSchema = mongoose.Schema(
         lastname: {
             type: String, required: true
         },
-        isAdmin:{
-            type:Boolean, default:false
+        isAdmin: {
+            type: Boolean, default: false
         },
         profilePicture: String, coverPicture: String, about: String, livesIn: String,
         worksAt: String, relationship: String, country: String, followers: [], following: [],
     },
-    { timestamps:true }
+    { timestamps: true }
 );
 
-export default UserModel = mongoose.model("User",userSchema);
+module.exports = mongoose.model("User", userSchema);

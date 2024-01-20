@@ -1,9 +1,9 @@
-import UserModel from "../models/userModel";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+const UserModel = require("../models/userModel");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Register new user
-export const registerUser = async (req, res) => {
+let  registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -33,7 +33,7 @@ export const registerUser = async (req, res) => {
 // Login User
 
 // Changed
-export const loginUser = async (req, res) => {
+let loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -59,3 +59,5 @@ export const loginUser = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
+module.exports = { registerUser, loginUser}

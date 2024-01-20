@@ -1,10 +1,10 @@
-import PostModel from "../models/postModel.js";
-import UserModel from "../models/userModel.js";
-import mongoose from "mongoose";
+const PostModel = require( "../models/postModel.js");
+const UserModel = require( "../models/userModel.js");
+const mongoose = require("mongoose");
 
 // creating a post
 
-export const createPost = async (req, res) => {
+let createPost = async (req, res) => {
   const newPost = new PostModel(req.body);
 
   try {
@@ -17,7 +17,7 @@ export const createPost = async (req, res) => {
 
 // get a post
 
-export const getPost = async (req, res) => {
+let getPost = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -29,7 +29,7 @@ export const getPost = async (req, res) => {
 };
 
 // update post
-export const updatePost = async (req, res) => {
+let updatePost = async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.body;
 
@@ -45,7 +45,7 @@ export const updatePost = async (req, res) => {
 };
 
 // delete a post
-export const deletePost = async (req, res) => {
+let deletePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
 
@@ -63,7 +63,7 @@ export const deletePost = async (req, res) => {
 };
 
 // like/dislike a post
-export const likePost = async (req, res) => {
+let likePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
   try {
@@ -81,7 +81,7 @@ export const likePost = async (req, res) => {
 };
 
 // Get timeline posts
-export const getTimelinePosts = async (req, res) => {
+let getTimelinePosts = async (req, res) => {
   const userId = req.params.id
   try {
     const currentUserPosts = await PostModel.find({ userId: userId });
@@ -119,3 +119,5 @@ export const getTimelinePosts = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+module.exports = { createPost, getPost, updatePost, deletePost, likePost, getTimelinePosts }

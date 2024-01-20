@@ -1,6 +1,6 @@
-import ChatModel from "../models/chatModels";
+const ChatModel = require("../models/chatModels");
 
-export const createChat = async (req, res) => {
+let createChat = async (req, res) => {
   const newChat = new ChatModel({
     members: [req.body.senderId, req.body.receiverId],
   });
@@ -12,7 +12,7 @@ export const createChat = async (req, res) => {
   }
 };
 
-export const userChats = async (req, res) => {
+let userChats = async (req, res) => {
   try {
     const chat = await ChatModel.find({
       members: { $in: [req.params.userId] },
@@ -23,7 +23,7 @@ export const userChats = async (req, res) => {
   }
 };
 
-export const findChat = async (req, res) => {
+let findChat = async (req, res) => {
   try {
     const chat = await ChatModel.findOne({
       members: { $all: [req.params.firstId, req.params.secondId] },
@@ -33,3 +33,5 @@ export const findChat = async (req, res) => {
     res.status(500).json(error)
   }
 };
+
+module.exports = { createChat, userChats, findChat}
