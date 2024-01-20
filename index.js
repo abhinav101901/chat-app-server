@@ -28,8 +28,8 @@ app.use('/images', express.static('images'));
 dotenv.config();
 const PORT = 3400;
 
-mongoose.connect("mongodb+srv://abhinav:abhi123@cluster0.qicwtqo.mongodb.net/e-digital",
-{dbName:"e-digital"},
+mongoose.connect("mongodb+srv://abhinav:abhi123@cluster0.qicwtqo.mongodb.net/social-chat",
+{dbName:"social-chat"},
 {useNewUrlParser:true})
     .then(() => console.log("MongoDb is connected"))
     .catch(err => console.log(err))
